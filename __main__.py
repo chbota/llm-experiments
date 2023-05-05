@@ -40,7 +40,7 @@ def make_opt_generator(model):
     generator = pipeline('text-generation', model=model, device="cuda:0")
     print('ready for prompt')
     def generate(prompt):
-      return generator(prompt, max_length=512, batch_size=8, do_sample=True, top_p=0.95, top_k=4, temperature=0.4, num_return_sequences=1)[0]['generated_text']
+      return generator(prompt, max_length=100, batch_size=8, do_sample=True, top_p=0.95, top_k=4, temperature=0.4, num_return_sequences=1)[0]['generated_text']
     
     return generate
   return opt_generator
