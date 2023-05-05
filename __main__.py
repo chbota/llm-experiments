@@ -27,7 +27,7 @@ def replit_generator():
   def generate(prompt):
     x = tokenizer(prompt, return_tensors='pt').input_ids.cuda()
     print('encoded prompt')
-    y = model.generate(x, max_length=255, do_sample=True, top_p=0.95, top_k=4, temperature=0.2, num_return_sequences=1, eos_token_id=model.tokenizer.eos_token_id, pad_token_id=model.tokenizer.eos_token_id)
+    y = model.generate(x, max_length=255, do_sample=True, top_p=0.95, top_k=4, temperature=0.2, num_return_sequences=1, eos_token_id=tokenizer.eos_token_id, pad_token_id=tokenizer.eos_token_id)
     response = tokenizer.decode(y[0], skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
     return response
@@ -66,7 +66,7 @@ OPT1_3 = {
   'make_generator': make_opt_generator('facebook/opt-1.3b')
 }
 
-MODEL = OPT1_3
+MODEL = REPLIT
 
 generate = MODEL['make_generator']()
 
